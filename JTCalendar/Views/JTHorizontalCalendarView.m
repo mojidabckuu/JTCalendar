@@ -179,52 +179,55 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
     
     [self updatePageMode];
     
-    CGSize size = self.frame.size;
+    CGSize frameSize = self.frame.size;
+    CGFloat left = self.contentInset.left;
+    CGFloat right = self.contentInset.right;
+    CGSize size = CGSizeMake(frameSize.width - left - right, frameSize.height);
     
     switch (_pageMode) {
         case JTCalendarPageModeFull:
             
-            _leftView.frame = CGRectMake(0, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(size.width, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width * 2, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width * 2 + left, 0, size.width, size.height);
             
             if(previousPageMode == JTCalendarPageModeFull){
-                self.contentOffset = CGPointMake(self.contentOffset.x + size.width, 0);
+                self.contentOffset = CGPointMake(self.contentOffset.x + frameSize.width, 0);
             }
             else if(previousPageMode ==  JTCalendarPageModeCenterLeft){
-                self.contentOffset = CGPointMake(self.contentOffset.x + size.width, 0);
+                self.contentOffset = CGPointMake(self.contentOffset.x + frameSize.width, 0);
             }
             
-            self.contentSize = CGSizeMake(size.width * 3, size.height);
+            self.contentSize = CGSizeMake(frameSize.width * 3, frameSize.height);
             
             break;
         case JTCalendarPageModeCenter:
             // Not tested
             
-            _leftView.frame = CGRectMake(- size.width, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(0, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(- frameSize.width + left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
             
-            self.contentSize = size;
+            self.contentSize = frameSize;
             
             break;
         case JTCalendarPageModeCenterLeft:
             
-            _leftView.frame = CGRectMake(0, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(size.width, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width * 2, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width * 2 + left, 0, size.width, size.height);
             
-            self.contentOffset = CGPointMake(self.contentOffset.x + size.width, 0);
-            self.contentSize = CGSizeMake(size.width * 2, size.height);
+            self.contentOffset = CGPointMake(self.contentOffset.x + frameSize.width, 0);
+            self.contentSize = CGSizeMake(frameSize.width * 2, frameSize.height);
             
             break;
         case JTCalendarPageModeCenterRight:
             
-            _leftView.frame = CGRectMake(- size.width, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(0, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(- frameSize.width + left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
             
-            self.contentSize = CGSizeMake(size.width * 2, size.height);
+            self.contentSize = CGSizeMake(frameSize.width * 2, frameSize.height);
             
             break;
     }
@@ -259,53 +262,56 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
     
     [self updatePageMode];
     
-    CGSize size = self.frame.size;
+    CGSize frameSize = self.frame.size;
+    CGFloat left = self.contentInset.left;
+    CGFloat right = self.contentInset.right;
+    CGSize size = CGSizeMake(frameSize.width - left - right, frameSize.height);
     
     switch (_pageMode) {
         case JTCalendarPageModeFull:
             
-            _leftView.frame = CGRectMake(0, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(size.width, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width * 2, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width * 2 + left, 0, size.width, size.height);
             
             if(previousPageMode == JTCalendarPageModeFull){
-                self.contentOffset = CGPointMake(self.contentOffset.x - size.width, 0);
+                self.contentOffset = CGPointMake(self.contentOffset.x - frameSize.width, 0);
             }
-            self.contentSize = CGSizeMake(size.width * 3, size.height);
+            self.contentSize = CGSizeMake(frameSize.width * 3, frameSize.height);
             
             break;
         case JTCalendarPageModeCenter:
             // Not tested
             
-            _leftView.frame = CGRectMake(- size.width, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(0, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(- frameSize.width + left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
             
             self.contentSize = size;
             
             break;
         case JTCalendarPageModeCenterLeft:
             
-            _leftView.frame = CGRectMake(0, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(size.width, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width * 2, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width * 2 + left, 0, size.width, size.height);
 
             if(previousPageMode != JTCalendarPageModeCenterRight){
-                self.contentOffset = CGPointMake(self.contentOffset.x - size.width, 0);
+                self.contentOffset = CGPointMake(self.contentOffset.x - frameSize.width, 0);
             }
 
             // Must be set a the end else the scroll freeze
-            self.contentSize = CGSizeMake(size.width * 2, size.height);
+            self.contentSize = CGSizeMake(frameSize.width * 2, frameSize.height);
 
             break;
         case JTCalendarPageModeCenterRight:
             // Not tested
             
-            _leftView.frame = CGRectMake(- size.width, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(0, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(- frameSize.width + left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
 
-            self.contentSize = CGSizeMake(size.width * 2, size.height);
+            self.contentSize = CGSizeMake(frameSize.width * 2, frameSize.height);
             
             break;
     }
@@ -396,43 +402,45 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
 
 - (void)repositionViews
 {
-    CGSize size = self.frame.size;
-    self.contentInset = UIEdgeInsetsZero;
+    CGSize frameSize = self.frame.size;
+    CGFloat left = self.contentInset.left;
+    CGFloat right = self.contentInset.right;
+    CGSize size = CGSizeMake(frameSize.width - left - right, frameSize.height);
     
     switch (_pageMode) {
         case JTCalendarPageModeFull:
-            self.contentSize = CGSizeMake(size.width * 3, size.height);
+            self.contentSize = CGSizeMake(frameSize.width * 3, frameSize.height);
             
-            _leftView.frame = CGRectMake(0, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(size.width, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width * 2, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width * 2 + left, 0, size.width, size.height);
             
-            self.contentOffset = CGPointMake(size.width, 0);
+            self.contentOffset = CGPointMake(frameSize.width, 0);
             break;
         case JTCalendarPageModeCenter:
             self.contentSize = size;
             
-            _leftView.frame = CGRectMake(- size.width, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(0, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(- frameSize.width + left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
             
             self.contentOffset = CGPointZero;
             break;
         case JTCalendarPageModeCenterLeft:
-            self.contentSize = CGSizeMake(size.width * 2, size.height);
+            self.contentSize = CGSizeMake(frameSize.width * 2, frameSize.height);
             
-            _leftView.frame = CGRectMake(0, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(size.width, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width * 2, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width * 2 + left, 0, size.width, size.height);
             
-            self.contentOffset = CGPointMake(size.width, 0);
+            self.contentOffset = CGPointMake(frameSize.width, 0);
             break;
         case JTCalendarPageModeCenterRight:
-            self.contentSize = CGSizeMake(size.width * 2, size.height);
+            self.contentSize = CGSizeMake(frameSize.width * 2, frameSize.height);
             
-            _leftView.frame = CGRectMake(- size.width, 0, size.width, size.height);
-            _centerView.frame = CGRectMake(0, 0, size.width, size.height);
-            _rightView.frame = CGRectMake(size.width, 0, size.width, size.height);
+            _leftView.frame = CGRectMake(- frameSize.width + left, 0, size.width, size.height);
+            _centerView.frame = CGRectMake(left, 0, size.width, size.height);
+            _rightView.frame = CGRectMake(frameSize.width + left, 0, size.width, size.height);
             
             self.contentOffset = CGPointZero;
             break;
